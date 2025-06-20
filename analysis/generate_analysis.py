@@ -1,10 +1,11 @@
-import os
+from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Recreate analysis directory after reset
-analysis = "/home/aroni/DockerTest/analysis"
-os.makedirs(analysis, exist_ok=True)
+# Set the base directory relative to the script location
+base_dir = Path(__file__).parent.resolve()  # Gets the folder where this script is located
+analysis = base_dir / "analysis"
+analysis.mkdir(parents=True, exist_ok=True)  # Create analysis folder if it doesn't exist
 
 # A-1: Simulated request counts (N = 3)
 server_counts_a1 = {'Server1': 3450, 'Server2': 3280, 'Server3': 3270}
@@ -15,7 +16,7 @@ plt.title("A-1: Load Distribution (N = 3)")
 plt.ylabel("Number of Requests")
 plt.xlabel("Server ID")
 plt.tight_layout()
-plt.savefig(f"{analysis}/A1_load_distribution.png")
+plt.savefig(analysis / "A1_load_distribution.png")
 plt.close()
 
 # A-2: Scalability with N = 2 to 6
@@ -29,7 +30,7 @@ plt.xlabel("Number of Server Replicas (N)")
 plt.ylabel("Average Load per Server")
 plt.grid(True)
 plt.tight_layout()
-plt.savefig(f"{analysis}/A2_scalability_chart.png")
+plt.savefig(analysis / "A2_scalability_chart.png")
 plt.close()
 
 # A-3: Simulated failure and recovery log
@@ -43,7 +44,7 @@ failure_log = """
 [INFO] Resumed load balancing across Server1, Server3, Server999
 """
 
-with open(f"{analysis}/A3_failure_recovery_log.txt", "w") as f:
+with open(analysis / "A3_failure_recovery_log.txt", "w") as f:
     f.write(failure_log.strip())
 
 # A-4: Hash function comparison
@@ -55,7 +56,7 @@ plt.bar(hash_methods, std_devs, color=['blue', 'orange'])
 plt.title("A-4: Hash Function Load Imbalance (Std. Dev.)")
 plt.ylabel("Standard Deviation of Requests")
 plt.tight_layout()
-plt.savefig(f"{analysis}/A4_hash_function_comparison.png")
+plt.savefig(analysis / "A4_hash_function_comparison.png")
 plt.close()
 
 # Summary report
@@ -82,7 +83,7 @@ report = """
 - Conclusion: Original hash function is more consistent and fair in load distribution.
 """
 
-with open(f"{analysis}/report.md", "w") as f:
+with open(analysis / "report.md", "w") as f:
     f.write(report.strip())
 
-analysis
+print(f"Analysis saved to: {analysis}")
