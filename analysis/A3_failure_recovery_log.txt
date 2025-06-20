@@ -1,0 +1,7 @@
+[INFO] Received 10000 client requests at N=3
+[INFO] Server2 stopped manually
+[INFO] Heartbeat for Server2 failed
+[INFO] Removing Server2 from replica list
+[INFO] Spawning new container: Server999
+[INFO] Server999 added to hash ring and docker network
+[INFO] Resumed load balancing across Server1, Server3, Server999
