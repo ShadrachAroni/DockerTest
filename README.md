@@ -145,6 +145,9 @@ curl http://localhost:5000/home
 ## ✍️ Contributors
 
 * 👤 Shadrach Aroni
+* 👤 Dennis Koros
+* 👤 Onyonka James Magara
+* 👤 Bahati Pambi Jere
 
 ---
 
